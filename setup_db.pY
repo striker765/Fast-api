@@ -32,7 +32,7 @@ def create_db():
             ('MCASSAB30', 'Acionamento: Lucas, número 1989234893547.\n'
                            'Procedimento em caso de alerta:\n'
                            'Verificar conexão de rede e contatar o suporte técnico imediatamente.'),
-            ('tst', (
+            ('Fast api', (
                 'Computador Local (Desenvolvimento e Teste)\n'
                 '1. Desenvolver e Testar\n\n'
                 'Servidor Remoto (Hospedagem da API)\n'
