@@ -6,6 +6,7 @@ from colorama import Fore, Style, init
 init(autoreset=True)
 
 def limpar_tela():
+
     sistema = os.name
     if sistema == 'nt':
         os.system('cls')
@@ -13,11 +14,20 @@ def limpar_tela():
         os.system('clear')
 
 
+
+
+def deletar_host(db, nome_do_host):
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM tabela_hosts WHERE nome_host = ?", (nome_do_host,))
+    db.commit()
+    print(Fore.GREEN + f'Host "{nome_do_host}" deletado com sucesso!' + Style.RESET_ALL)
+
+
+
 def obter_procedimento_do_host(db, nome_do_host):
     cursor = db.cursor()
     cursor.execute('SELECT procedure FROM hosts WHERE name = ?', (nome_do_host,))
     resultado = cursor.fetchone()
-    
     if resultado:
         return resultado[0]
     else:
@@ -35,8 +45,10 @@ def alterar_host(db, nome_do_host, novo_procedimento):
     if cursor.rowcount > 0:
         db.commit()
         print(Fore.GREEN + 'Host alterado com sucesso!' + Style.RESET_ALL)
+
     else:
         print(Fore.RED + 'Host não encontrado para alteração.' + Style.RESET_ALL)
+
 
 def main():
     try:
