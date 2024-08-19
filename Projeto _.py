@@ -1,8 +1,17 @@
 import sqlite3
+import os
 from colorama import Fore, Style, init
 
 # Inicializa a biblioteca colorama
 init(autoreset=True)
+
+
+def limpar_tela():
+    sistema = os.name
+    if sistema == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 
 def obter_procedimento_do_host(db, nome_do_host):
     cursor = db.cursor()
@@ -20,6 +29,7 @@ def main():
         
         while True:
             entrada_usuario = input(Fore.GREEN + "Digite uma opção ou nome de um Host (ou 'exit' para sair): " + Style.RESET_ALL).strip()
+            limpar_tela()
             if entrada_usuario.lower() == 'exit':
                 break
             
